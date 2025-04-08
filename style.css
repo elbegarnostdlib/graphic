@@ -1,0 +1,27 @@
+* {
+    margin: 0px; 
+    padding: 0px;
+    border: none; 
+    outline: none;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+body {
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+canvas {
+    position: absolute;
+   
+    width: 50%;
+    top: 2vh;
+    left: 25%; 
+    right: 25%;
+    height: 97vh;
+   
+}
