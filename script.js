@@ -36,7 +36,7 @@ function draw(){
     var y = center.y+radius* Math.sin(angle);
     canvasContext.strokeStyle = 'black';
     canvasContext.beginPath();
-    canvasContext.arc(center.x, center.y, x, y, Math.PI * 2);
+    canvasContext.arc(center.x, center.y, radius,0, Math.PI * 2);
     canvasContext.fill(); 
  
    }
@@ -48,5 +48,5 @@ function draw(){
 
 }
 draw();
-
+ 
 
