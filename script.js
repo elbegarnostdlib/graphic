@@ -26,6 +26,13 @@ function drawRect(ctx, color,startX,startY,width,height){
         ctx.stroke();
 }
 
+function drawArc(ctx, color,startX,startY,radius,angle,startAngle){
+    ctx.strokeStyle = color;
+    ctx.beginPath();
+    ctx.arc(startX, startY, radius,startAngle, angle);
+    ctx.fill(); 
+    ctx.stroke();
+}
 function draw(){
     canvasContext.clearRect(0, 0, width, height);
     
@@ -41,10 +48,8 @@ function draw(){
    for(let x=0; x<width; x++){
     
    }
-   canvasContext.strokeStyle = 'black';
-   canvasContext.beginPath();
-   canvasContext.arc(10, 10, 1,0, Math.PI * 2);
-   canvasContext.fill(); 
+   
+   drawArc(canvasContext,"black",20, 20, 1,0, Math.PI * 2) ;
     requestAnimationFrame(draw);
 
 
