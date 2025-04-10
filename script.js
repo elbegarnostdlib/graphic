@@ -3,9 +3,10 @@ var canvasContext = canvas.getContext("2d");
 
 var width = canvas.width;
 var height = canvas.height;
-var radius = width * 0.25;
+var radius = 1;
 var center  = {x: width / 2, y: height / 2};
 var digitRectengle={width:10, height:10};
+
 
 
 
@@ -35,24 +36,20 @@ function drawArc(ctx, color,startX,startY,radius,angle,startAngle){
 }
 function draw(){
     canvasContext.clearRect(0, 0, width, height);
-    
     drawLine(canvasContext,0, height / 2,width, height / 2, "black", 0.1);
     drawLine(canvasContext,width / 2, 0 ,width / 2, height, 'black', 0.1);
-    for(var angle=0; angle< Math.PI; angle+=Math.PI/2){
-    var x = center.x+radius* Math.cos(angle);
-    var y = center.y+radius* Math.sin(angle);
-   
- 
-   }
 
-   for(let x=0; x<width; x++){
+    let heightAngle=100;
+    let frequency =0.0316;
     
+    for(let x=0; x<width; x++){
+    let angle = (-x - center.x) * frequency;
+      let y=center.y+Math.sin(angle)*heightAngle;
+      drawArc(canvasContext,"black",x, y, radius,0, Math.PI * 2) ;
+       
    }
    
-   drawArc(canvasContext,"black",20, 20, 1,0, Math.PI * 2) ;
     requestAnimationFrame(draw);
-
-
 
 
 }
