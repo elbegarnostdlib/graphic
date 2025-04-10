@@ -31,16 +31,20 @@ function draw(){
     
     drawLine(canvasContext,0, height / 2,width, height / 2, "black", 0.1);
     drawLine(canvasContext,width / 2, 0 ,width / 2, height, 'black', 0.1);
-    for(var angle=0; angle<2 * Math.PI; angle+=Math.PI/2){
+    for(var angle=0; angle< Math.PI; angle+=Math.PI/2){
     var x = center.x+radius* Math.cos(angle);
     var y = center.y+radius* Math.sin(angle);
-    canvasContext.strokeStyle = 'black';
-    canvasContext.beginPath();
-    canvasContext.arc(center.x, center.y, radius,0, Math.PI * 2);
-    canvasContext.fill(); 
+   
  
    }
+
+   for(let x=0; x<width; x++){
     
+   }
+   canvasContext.strokeStyle = 'black';
+   canvasContext.beginPath();
+   canvasContext.arc(10, 10, 1,0, Math.PI * 2);
+   canvasContext.fill(); 
     requestAnimationFrame(draw);
 
 
