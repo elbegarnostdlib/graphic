@@ -8,8 +8,34 @@ var center  = {x: width / 2, y: height / 2};
 var digitRectengle={width:10, height:10};
 const selector = document.getElementById("functionSelector");
 
-
-
+function graphicSinCosTan(ctx,a,width,center,heightAngle,radius,frequency,color,lineW){
+    for (let x = 0; x < width; x++) {
+        let angle = (x - center.x) * frequency;
+        let y = center.y - a(angle) * heightAngle;
+        drawLine(ctx, x,y,x+radius,y+radius,color,lineW)
+    }
+}
+ function  graphicDegreeX(ctx,degree,height,radius,color,lineW){
+    for(let x=0; x<height; x++){
+        let y=x^degree;
+        drawLine(ctx, x,y,x+radius,y+radius,color,lineW)
+      }
+      
+ }
+function graphicCtg(ctx,width,center,heightAngle,radius,frequency,color,lineW){
+    for(let x=0; x<width; x++){
+        let angle = (x - center.x) * frequency;
+          let y=center.y-(Math.cos(angle)/Math.sin(angle))*heightAngle;
+          drawLine(ctx, x,y,x+radius,y+radius,color,lineW)
+           
+       }
+}
+function graphicAbs(ctx,height,radius,color,lineW){
+for(let x=0; x<height; x++){
+    let y= Math.abs(x);
+    drawLine(ctx, x,y,x+radius,y+radius,color,lineW)
+  }
+}
 
 function drawLine(ctx, startX,startY,endX,endY,color,lineWidth){
     ctx.beginPath();   
@@ -45,69 +71,52 @@ function draw(){
     let frequency = 0.0316;
     const selected = selector.value;
 
+    for(let x=-200; x<=200; x+=50){
+        if(x===0)continue;
+        canvasContext.fillText(-x,center.x-x,height/2+15);
+
+    }
+    for(let y=-200; y<=200; y+=50){
+        if(y===0)continue;
+        canvasContext.fillText(-y,center.x,width/2+15);
+
+    }
+
     switch (selected) {
         case "sin":
-            for (let x = 0; x < width; x+=0.5) {
-                let angle = (x - center.x) * frequency;
-                let y = center.y - Math.sin(angle) * heightAngle;
-                drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
-            }
+            graphicSinCosTan(canvasContext,Math.sin,width,center,100,radius, 0.0316,"blue",3)
             break;
 
         case "cos":
-            for (let x = 0; x < width; x+=0.5) {
-                let angle = (x - center.x) * frequency;
-                let y = center.y - Math.cos(angle) * heightAngle;
-                drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
-            }
+            graphicSinCosTan(canvasContext,Math.cos,width,center,100,radius, 0.0316,"blue",3)
             break;
 
             case "tan":
-                for(let x = 0; x < width; x++){
-                    let angle = (x - center.x) * frequency;
-                      let y=center.y-Math.tan(angle)*heightAngle;
-                      drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
-                       
-                   }
+                graphicSinCosTan(canvasContext,Math.tan,width,center,100,radius, 0.0316,"blue",3)
             break;
             case "ctg":
-                for(let x=0; x<width; x++){
-                    let angle = (x - center.x) * frequency;
-                      let y=center.y-(Math.cos(angle)/Math.sin(angle))*heightAngle;
-                      drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
-                       
-                   }
-            break;
+                graphicCtg(canvasContext,width,center,100,radius, 0.0316,"blue",3);
+            break; 
 
             case "x^2":
-                for(let x=0; x<width; x++){
-                    let y=x^2;
-                    drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
-                     
-                 }
+                graphicDegreeX(canvasContext,2,height,radius,"blue",3)
             break;
 
         case "x^3":
-              for(let x=0; x<height; x++){
-                let y=x^3;
-                drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
-              }
+            graphicDegreeX(canvasContext,3,height,radius,"blue",3)
             break;
 
         case "abs":
-              for(let x=0; x<height; x++){
-                let y= Math.abs(x);
-                drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
-              }
+            graphicAbs(canvasContext,height,radius,"gray",3)
             break;
 
-        case "3^abs(x)":
-             for(let x=0; x<height; x++){
-                let y= Math.pow(x,1/3);
-                drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
+        // case "3^abs(x)":
+        //      for(let x=0; x<height; x++){
+        //         let y= Math.pow(x,1/3);
+        //         drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
                 
-            }
-            break;
+        //     }
+        //     break;
     }
 
     requestAnimationFrame(draw);
