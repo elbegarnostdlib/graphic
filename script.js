@@ -91,14 +91,14 @@ function draw(){
             graphicSinCosTan(canvasContext,Math.cos,width,center,100,radius, 0.0316,"blue",3)
             break;
 
-            case "tan":
+        case "tan":
                 graphicSinCosTan(canvasContext,Math.tan,width,center,100,radius, 0.0316,"blue",3)
             break;
-            case "ctg":
+        case "ctg":
                 graphicCtg(canvasContext,width,center,100,radius, 0.0316,"blue",3);
             break; 
 
-            case "x^2":
+        case "x^2":
                 graphicDegreeX(canvasContext,2,height,radius,"blue",3)
             break;
 
