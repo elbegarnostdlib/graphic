@@ -47,26 +47,26 @@ function draw(){
 
     switch (selected) {
         case "sin":
-            for (let x = 0; x < width; x++) {
+            for (let x = 0; x < width; x+=0.5) {
                 let angle = (x - center.x) * frequency;
                 let y = center.y - Math.sin(angle) * heightAngle;
-                drawArc(canvasContext, "blue", x, y, radius, 2 * Math.PI, 0);
+                drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
             }
             break;
 
         case "cos":
-            for (let x = 0; x < width; x++) {
+            for (let x = 0; x < width; x+=0.5) {
                 let angle = (x - center.x) * frequency;
                 let y = center.y - Math.cos(angle) * heightAngle;
-                drawArc(canvasContext, "green", x, y, radius, 2 * Math.PI, 0);
+                drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
             }
             break;
 
             case "tan":
-                for(let x=0; x<width; x++){
+                for(let x = 0; x < width; x++){
                     let angle = (x - center.x) * frequency;
                       let y=center.y-Math.tan(angle)*heightAngle;
-                      drawArc(canvasContext,"red",x, y, radius,0, Math.PI * 2) ;
+                      drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
                        
                    }
             break;
@@ -74,15 +74,15 @@ function draw(){
                 for(let x=0; x<width; x++){
                     let angle = (x - center.x) * frequency;
                       let y=center.y-(Math.cos(angle)/Math.sin(angle))*heightAngle;
-                      drawArc(canvasContext,"red",x, y, radius,0, Math.PI * 2) ;
+                      drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
                        
                    }
             break;
 
             case "x^2":
-                for(let x=0; x<height; x++){
+                for(let x=0; x<width; x++){
                     let y=x^2;
-                    drawArc(canvasContext,"red",x, y, radius,0, Math.PI * 2) ;
+                    drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
                      
                  }
             break;
@@ -90,21 +90,21 @@ function draw(){
         case "x^3":
               for(let x=0; x<height; x++){
                 let y=x^3;
-                drawArc(canvasContext,"red",x, y, radius,0, Math.PI * 2) ;
+                drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
               }
             break;
 
         case "abs":
               for(let x=0; x<height; x++){
                 let y= Math.abs(x);
-                drawArc(canvasContext,"red",x, y, radius,0, Math.PI * 2) ;
+                drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
               }
             break;
 
-        case "3^abs":
+        case "3^abs(x)":
              for(let x=0; x<height; x++){
                 let y= Math.pow(x,1/3);
-                drawArc(canvasContext,"red",x, y, radius,0, Math.PI * 2) ;
+                drawLine(canvasContext, x,y,x+radius,y+radius,"blue",3)
                 
             }
             break;
