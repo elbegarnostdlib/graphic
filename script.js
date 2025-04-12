@@ -8,10 +8,30 @@ var center  = {x: width / 2, y: height / 2};
 var digitRectengle={width:10, height:10};
 const selector = document.getElementById("functionSelector");
 
+function getValue (name,angle){
+    switch (name) {
+        case "sin":
+          return Math.sin(angle);
+
+        case "cos":
+            return  Math.cos(angle);
+
+        case "tan":
+            return  Math.tan(angle);  
+
+        case "ctg":
+          return  Math.cos(angle)/Math.sin(angle);  
+    
+    }
+
+
+}
 function graphicSinCosTan(ctx,a,width,center,heightAngle,radius,frequency,color,lineW){
     for (let x = 0; x < width; x++) {
         let angle = (x - center.x) * frequency;
-        let y = center.y - a(angle) * heightAngle;
+        let value=getValue(a,angle);
+
+        let y = center.y - value * heightAngle;
         drawLine(ctx, x,y,x+radius,y+radius,color,lineW)
     }
 }
@@ -67,8 +87,6 @@ function draw(){
     drawLine(canvasContext, 0, height / 2, width, height / 2, "black", 0.5); 
     drawLine(canvasContext, width / 2, 0, width / 2, height, "black", 0.5); 
 
-    let heightAngle = 100;
-    let frequency = 0.0316;
     const selected = selector.value;
 
     for(let x=-200; x<=200; x+=50){
@@ -84,18 +102,18 @@ function draw(){
 
     switch (selected) {
         case "sin":
-            graphicSinCosTan(canvasContext,Math.sin,width,center,100,radius, 0.0316,"blue",3)
+            graphicSinCosTan(canvasContext,"sin",width,center,100,radius, 0.0316,"blue",3)
             break;
 
         case "cos":
-            graphicSinCosTan(canvasContext,Math.cos,width,center,100,radius, 0.0316,"blue",3)
+            graphicSinCosTan(canvasContext,"cos", width,center,100,radius, 0.0316,"blue",3)
             break;
 
         case "tan":
-                graphicSinCosTan(canvasContext,Math.tan,width,center,100,radius, 0.0316,"blue",3)
+                graphicSinCosTan(canvasContext,"tan",width,center,100,radius, 0.0316,"blue",3)
             break;
         case "ctg":
-                graphicCtg(canvasContext,width,center,100,radius, 0.0316,"blue",3);
+            graphicSinCosTan(canvasContext,"ctg",width,center,100,radius, 0.0316,"blue",3)
             break; 
 
         case "x^2":
